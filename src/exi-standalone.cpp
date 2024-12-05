@@ -57,6 +57,7 @@ int main(int argc, char** argv)
     if (!xmlFile.is_open())
     {
         cerr << "ERROR: Failed to open file: " << argv[1] << endl;
+        return -1;
     }
 
     streampos size = xmlFile.tellg();

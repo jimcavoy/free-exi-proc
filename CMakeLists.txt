@@ -25,7 +25,7 @@ include_directories(include/tests)
 
 link_directories($ENV{CEPSCORE}/bin)
 
-add_library(v2g-guru-exi-plugin STATIC 
+add_library(v2g-guru-exi-plugin SHARED 
            src/ceps-plugin-entrypoint.cpp 
            src/v2g-guru-exi-grammar.cpp
            src/v2g-guru-exi-processor.cpp
