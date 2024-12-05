@@ -37,3 +37,4 @@ temp/
 temp.*
 output.png
 *.evaluated.ceps
+build/

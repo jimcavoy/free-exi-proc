@@ -19,6 +19,7 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <fstream>
 #include <ctype.h>
 #include <chrono>
 #include <sstream>
@@ -36,9 +37,38 @@
 #include <future>
 #include <netinet/sctp.h> 
 #include "ceps_ast.hh"
+#include "v2g-guru-exi.h"
+#include "free-exi-terminal.h"
+#include "free-exi-proc.h"
 
 
+using namespace std;
 
-int main(int argc, char** argv){
+int main(int argc, char** argv)
+{
+    if (argc != 2)
+    {
+        cerr << "Usage: v2g-guru-exi file" << endl;
+        return -1;
+    }
 
+    ifstream xmlFile(argv[1], ios::in|ios::ate);
+
+    if (!xmlFile.is_open())
+    {
+        cerr << "ERROR: Failed to open file: " << argv[1] << endl;
+    }
+
+    streampos size = xmlFile.tellg();
+    char* buff = new char[size];
+    memset(buff, 0, size);
+    xmlFile.seekg(0, ios::beg);
+    xmlFile.read(buff, size);
+    xmlFile.close();    
+
+    v2g_guru_exi::Processor exiProc;
+
+    delete [] buff;
+
+    return 0;
 }
